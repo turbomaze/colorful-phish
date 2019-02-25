@@ -19,6 +19,7 @@ function describe(message, callback) {
   // adjust the depth for the recursive calls
   this.depth = depth + 1;
   callback.call(this);
+  console.log();
 
   // readjust the depth once those calls have completed
   this.depth = depth;
@@ -26,7 +27,9 @@ function describe(message, callback) {
   // log out the final success/failure state
   if (isMaster) {
     const total = this.successes + this.failures;
-    console.log(`\n${this.successes}/${total} tests passed.`);
+    console.log(`${this.successes}/${total} tests passed.\n`);
+
+    if (this.failures !== 0) process.exit(1);
   }
 }
 
