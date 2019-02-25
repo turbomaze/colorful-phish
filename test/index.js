@@ -36,10 +36,18 @@ describe('Colorful Phish', () => {
     });
 
     it('should return valid colors when given fuzzed keys', () => {
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 1000; i++) {
         const color = colorfulPhish(Math.random().toString(16));
         assert(isValidHexColor(color));
       }
+    });
+
+    it('should return the same color for the same key', () => {
+      const color1 = colorfulPhish('key');
+      const color2 = colorfulPhish('key');
+      assert(isValidHexColor(color1));
+      assert(isValidHexColor(color2));
+      assert(color1 === color2);
     });
   });
 
@@ -58,14 +66,22 @@ describe('Colorful Phish', () => {
     });
 
     it('should return valid colors when given fuzzed keys and secrets', () => {
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 32; i++) {
         const secret = Math.random().toString(16);
-        for (let j = 0; j < 20; j++) {
+        for (let j = 0; j < 32; j++) {
           const key = Math.random().toString(16);
           const color = colorfulPhish(key, secret);
           assert(isValidHexColor(color));
         }
       }
+    });
+
+    it('should return the same color for the same key and secret', () => {
+      const color1 = colorfulPhish('key', 'secret');
+      const color2 = colorfulPhish('key', 'secret');
+      assert(isValidHexColor(color1));
+      assert(isValidHexColor(color2));
+      assert(color1 === color2);
     });
   });
 
@@ -105,6 +121,14 @@ describe('Colorful Phish', () => {
           }
         }
       }
+    });
+
+    it('should return the same color for the same key, secret, and depth', () => {
+      const color1 = colorfulPhish('key', 'secret', 0);
+      const color2 = colorfulPhish('key', 'secret', 0);
+      assert(isValidHexColor(color1));
+      assert(isValidHexColor(color2));
+      assert(color1 === color2);
     });
   });
 });
