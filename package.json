@@ -1,6 +1,6 @@
 {
   "name": "colorful-phish",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate secret colors from primary keys to prevent phishing attacks.",
   "main": "./lib/index.js",
   "scripts": {
@@ -13,5 +13,8 @@
     "email"
   ],
   "author": "Anthony Liu",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "cafezinho": "^1.0.0"
+  }
 }

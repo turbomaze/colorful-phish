@@ -1,7 +1,7 @@
 const assert = require('assert');
+const { describe, it } = require('cafezinho');
 const colorfulPhish = require('../lib/index');
 const config = require('../lib/config');
-const { describe, it } = require('./helpers');
 
 function isValidChannelValue(channelValue) {
   const intValue = parseInt(channelValue, 16);
